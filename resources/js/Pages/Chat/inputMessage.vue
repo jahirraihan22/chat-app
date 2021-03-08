@@ -18,7 +18,9 @@
 </template>
 
 <script>
+import Input from '../../Jetstream/Input.vue';
 export default {
+  components: { Input },
     props : ['room'],
     data : function (){
         return{
@@ -30,8 +32,9 @@ export default {
             if(this.message == ' '){
                 return;
             }
-            axios.post('/chat/room/' + this.room.id + '/message',{
-                message : this.message
+            
+            axios.post('/chat/room/' + this.room.id + '/message' , {
+                message: this.message
             })
             .then(response => {
                 if(response.status == 201){
