@@ -20,7 +20,7 @@ class NewChatMessage implements ShouldBroadcast
     /**
      * Create a new event instance.
      *
-     * @return void
+     * @param ChatMessage $chatMessage
      */
     public function __construct(ChatMessage $chatMessage)
     {
@@ -34,11 +34,17 @@ class NewChatMessage implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return (new PrivateChannel('chat.'. $this->chatMessage->chat_room_id));
+        return new PrivateChannel('chat.'. $this->chatMessage->chat_room_id);
     }
 
-    public function broadcastAs() 
+    /**
+     * The event's broadcast name.
+     *
+     * @return string
+     */
+
+    public function broadcastAs()
     {
-        return ‘message.new’;
+        return 'new.message';
     }
 }

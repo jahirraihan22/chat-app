@@ -34,7 +34,7 @@ export default {
             }
             
             axios.post('/chat/room/' + this.room.id + '/message' , {
-                message: this.message
+                message:this.message
             })
             .then(response => {
                 if(response.status == 201){
